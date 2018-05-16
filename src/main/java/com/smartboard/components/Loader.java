@@ -34,7 +34,6 @@ public class Loader implements ApplicationRunner {
     private void createDefaultUsers() {
         User admin;
         Authority authority;
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
         if (authorityService.findByName(AuthorityName.ROLE_ADMIN).size() == 0)
             authority = new Authority(AuthorityName.ROLE_ADMIN);
@@ -44,15 +43,15 @@ public class Loader implements ApplicationRunner {
         Set<Authority> authorities = new HashSet<Authority>();
         authorities.add(authorityService.save(authority));
 
-        if (userService.findByUsername("admin") == null) {
-            admin = new User("admin", "admin", true);
+        if (userService.findByUsername("admin@admin.com") == null) {
+            admin = new User("admin@admin.com", "admin", true);
             admin.setAuthorities(authorities);
             admin.setValidated(true);
             userService.save(admin);
         }
 
-        if (userService.findByUsername("user") == null) {
-            admin = new User("user", "user", true);
+        if (userService.findByUsername("user@user.com") == null) {
+            admin = new User("user@user.com", "user", true);
             admin.setValidated(true);
             userService.save(admin);
         }

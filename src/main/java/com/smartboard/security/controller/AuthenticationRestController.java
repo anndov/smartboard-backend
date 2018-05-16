@@ -63,7 +63,7 @@ public class AuthenticationRestController {
         }
 
         catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
     }
